@@ -35,7 +35,7 @@ optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
 
 # Train model
 end1 =0
-for epoch in range(100):
+for epoch in range(20):
     start = time.time()  # 记录开始时间
     running_loss = 0.0
 
@@ -52,3 +52,6 @@ for epoch in range(100):
     end1 = end1 + end - start
     print(f"程序运行时间为：{end1}")
     print(f'Epoch: {epoch}, Loss: {running_loss / len(train_loader)}')
+
+    
+torch.save(model.state_dict(), 'mnist_model.pth')
