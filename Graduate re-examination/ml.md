@@ -66,7 +66,7 @@ Transformer:self-attention
 
 基于文本表征的方法有哪些? :词向量动态表征有GPT,BERT,固定表征Word2vec.
 
-什么是Embeddeding?
+什么是Embeddeding?:将高维离散数据（如单词、图像、音频等）映射到低维连续向量空间的技术。​这种映射使得在语义或特征上相似的数据在向量空间中也彼此接近，从而便于计算机进行处理和分析
 
 
 
