@@ -9,7 +9,7 @@
 
 # last upgrade
 Hello, professors. My name is Wang Haoyu.I graduated from the School of Science at Beijing University of Posts and Telecommunications.
- During my undergraduate studies in Applied Physics , I developed a strong foundation in theroy of communication and system science. My graduation project focused on optimizing deep neural networks using variational methods. In particular, I explored the L-BFGS optimization method, which offers a more stable approach than SGD by reducing random gradient noise and mitigating oscillations caused by large step sizes. This research further deepened my understanding of artificial intelligence applications.
+ During my undergraduate studies in Applied Physics , I developed a solid foundation in theroy of communication and system science. My graduation project focused on optimizing deep neural networks using variational methods. In particular, I explored the L-BFGS optimization method, which offers a more stable approach than SGD by reducing random gradient noise and mitigating oscillations caused by large step sizes. This research further deepened my understanding of artificial intelligence applications.
 
 I am proficient in Python and MATLAB, particularly in data analysis. I have applied MATLAB to construct and process communication signals using convolution in a course project. Additionally, I am skilled in data analysis tools like Origin and have experience with Material Studio for crystal structure modeling. My English proficiency is at the CET-6 level, with strong listening and speaking abilities.
 
