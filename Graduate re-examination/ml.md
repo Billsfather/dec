@@ -48,12 +48,25 @@ KNN和K-mean聚类有什么不同?
 
 一维卷积和二维卷积是什么:
 
+交叉熵损失:预测的概率分布与真实标签的概率分布之间的差异
+![picture 4](../images/0ab3056817e1b573dcec06c98aa6a3fd5c3553424d402bdc9da13c8dcaac52d2.png)  
+
+dropout:一种正则化方法,在训练的过程中随机丢弃神经元,减少对某个神经元的以来.
+
+卷积神经网络的感受野:卷积神经网络输出的特征图像上的像素点在原始图像上映射的区域大小.
+![picture 5](../images/2fc6214a50197396397cab72383dcef8b383a5d12021aec9b0615ba713394a0a.png)  
+
+什么样的数据集适合深度学习?:1.样本数量不足2.数据集没有局部相关特性.
+
+Transformer:self-attention
+
+![picture 6](../images/5cb3c766de91d0b8ec07c36bd9240c8d158e8e8704e54dbe8418cb44cd48324c.png)  
+![picture 7](../images/dfe8b291646f64303a454dbcac9b98365578811963d74845d3316f3b1ad073f0.png)  
 
 
+基于文本表征的方法有哪些? :词向量动态表征有GPT,BERT,固定表征Word2vec.
 
-
-
-
+什么是Embeddeding?
 
 
 
