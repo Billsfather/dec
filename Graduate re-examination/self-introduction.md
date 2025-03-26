@@ -1,5 +1,3 @@
-
-
 > 
 总的来说，BFGS 在一些函数计算成本较高的场景中，每次迭代计算量大可能会拖慢训练速度。虽然它在迭代次数上更少且最终损失更小，但对于视觉识别这样需要频繁全批次计算的任务，SGD 或 mini-batch 优化方法通常能更高效地平衡计算时间和性能。
 > I am a calm and composed individual who gets along well with others. I have a strong desire for self-improvement and am highly motivated in learning. I approach tasks with diligence, responsibility, and a strong sense of teamwork. I have a proactive mindset and a broad perspective, allowing me to endure hardships and remain curious about new things.
