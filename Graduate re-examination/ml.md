@@ -94,3 +94,6 @@ mask self-attention:Decoder中用来使输出时只能使用之前的信息的�
 ![picture 13](../images/b2391ff93ae5bc7e9cd29460592712a3528eb4573ad868b957e25eed0aa4e9a0.png)  
 
 迁移学习的几种方式:1.特征提取(Feature Extractor)2.微调(Fine-tuning)
+
+ai agent四个模块:记忆-外部工具-计划-行动.
+
