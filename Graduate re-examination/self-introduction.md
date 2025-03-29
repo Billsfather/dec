@@ -5,9 +5,9 @@ Hello, professors. My name is Wang Haoyu. I graduated from the School of Science
 #Skills and Expertise
 . My English proficiency is at the CET-6 level, with strong listening and speaking abilities.
 #Beyond Academics
-Outside of my studies, I am passionate about sports and community involvement. I have  participated in community service projects. and I excel in table tennis while embracing endurance challenges through 1000-meter swimming. These pursuits highlight my commitment to personal growth and collaboration.
+Outside of my studies, I am passionate about sports and community involvement. I have  participated in community service projects. and I like play table tennis and  swimming in leisure time. These pursuits highlight my commitment to personal growth and collaboration.
 #Future Goals
-I have a strong passion for AI and its applications in medical image analysis . By pursuing graduate studies, I aim to deepen my expertise in this field and contribute innovative research achievement. 
+I have a strong passion for AI and its applications in medical image analysis . By pursuing graduate studies, I aim to deepen my expertise in this field and contribute innovative solution.
 
 Thank you for your time and consideration.
 >
