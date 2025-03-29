@@ -9,7 +9,7 @@ Outside of my studies, I am passionate about sports and community involvement. I
 
 I have a strong passion for AI and its applications in medical image analysis . By pursuing graduate studies, I aim to deepen my expertise in this field and contribute innovative research achievement. 
 
-Thank you for your time and consideration.
+Thank you for your time .
 >
 _Mar25_
 ## Last Upgrade
