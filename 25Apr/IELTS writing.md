@@ -43,7 +43,15 @@ die delays ,aicdity  the get this part of the ireland gets an aveage
 
  Mar7
 
- chords
+ chords  january february March April May June July August September October November December
+
+ january February march April May june july august september Ocotober November December 
+
+ Monday Tuesday Wednesday Thursday satuarday sunday 
+
+ Spring summer autumn winter 
+
+ today's ielts learning self conversation ,i was watching the ielts 
 
 
 
