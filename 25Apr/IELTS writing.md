@@ -51,8 +51,9 @@ die delays ,aicdity  the get this part of the ireland gets an aveage
 
  Spring summer autumn winter 
 
- today's ielts learning self conversation ,i was watching the ielts 
+ today's ielts learning self conversation ,i was watching the ielts learing video in bilibili. The teacher told me to how to figure out what i listen in the exam by tell me the difference between different numbers and jobs , so i think is better to pratice more and more on the exam software by myself .everyone dont konw what if after you done a lot of thing ,like every fames and celebrity cant see their future in the very first time they just doing their missions ,even feel lost about their future,but their work actually did some work to their life .pratice make prefect. the more you done the more you get. we all kown that as a teenager by read the words form books but the 
 
+ so is best to do what you want do right now ,dont be wait for a long time ,couse you dont kown what gonna come to you first ,every moment is your last 
 
 
 
