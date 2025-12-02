@@ -1,0 +1,323 @@
+\documentclass[journal,comsoc]{IEEEtran}
+\usepackage[T1]{fontenc}
+\ifCLASSINFOpdf
+\else
+\fi
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\interdisplaylinepenalty=2500
+\usepackage[cmintegrals]{newtxmath}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{flushend}
+\usepackage{amsmath}    % 数学公式基础
+\usepackage{amssymb}    % 数学符号（如\mathbf{I}）
+\usepackage{amsbsy}      % 加粗向量（\boldsymbol）
+\usepackage{cuted}      % 双栏转单列的strip环境
+\usepackage{enumitem}
+\usepackage{epstopdf}
+\usepackage{balance}
+\usepackage{dblfloatfix}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+% 重新定义附录标题格式
+\renewcommand{\appendixname}{APPENDIX}
+\renewcommand{\thesection}{\Alph{section}}
+
+\setlength{\abovecaptionskip}{-0.1cm}
+\renewcommand{\thetheorem}{\textcolor{red}{\arabic{section}.\arabic{theorem}}} % 定理编号红色
+\usepackage{float}    % 提供[H]选项，强制固定图片位置
+\usepackage{graphicx} % 用于插入图片的宏包
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb} % 用于符号支持
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\title{TRTC}
+\author{HaoyuWang}
+
+\begin{document}
+	\maketitle
+	\begin{abstract}
+		Your abstract.
+	\end{abstract}
+	
+	\section{Introduction}
+	
+	\section{SYSTEM MODEL AND PROBLEM FORMULATION}
+	
+	We consider a spherical Intelligent Reflecting Surface (ITS)-enabled base station communication network, where the transmit end of the base station consists of m active antennas and an ITS with n passive elements, and the base station serves k single-antenna users as shown in Fig.1. Therefore, the beamforming vector design in traditional all-digital transmitters is transformed into the joint design of digital beamforming at the base station and phase shifts of the ITS.Thus,there is no link between the ITS and the users .The diagonal matrix related to the phase shifts of the ITS with continuous values is expressed as:
+	
+	\noindent Response to ris:
+	\begin{align} % 使用 align 环境来获得对每行编号的控制权
+		% 第一行：正常书写，会自动获得编号
+		\boldsymbol{\Phi} &= \mathrm{diag}\{\boldsymbol{\phi}\} \in \mathbb{C}^{N \times N}, \\
+		% 第二行及之后：在行末的 \\ 前添加 \nonumber 来取消该行的编号
+		\boldsymbol{\phi} &= [\phi_1, \ldots, \phi_N]^T \in \mathbb{C}^{N \times 1}, \nonumber \\
+		\phi_n &= T_n e^{j \varepsilon_n} \times C_n, \quad T_n = \cos\theta^i \cos\theta^s(\cos\phi^i \sin\phi^s - \sin\phi^i \cos\phi^s) 
+		Sa(a, b; \theta^s, \phi^s, \theta^i, \phi^i), \nonumber \\
+		C_n &\in \{0,1\}, \quad n = 1,2,\ldots,N \nonumber \\
+		\mathrm{Sa}&(a, b; \theta^s, \phi^s; \theta^i, \phi^i) \nonumber \\
+		&= \frac{\sin\left( \frac{\pi a}{\lambda} (\sin\theta^s \cos\phi^s + \sin\theta^i \cos\phi^i) \right)}{\frac{\pi a}{\lambda} (\sin\theta^s \cos\phi^s + \sin\theta^i \cos\phi^i)} 
+		\times \frac{\sin\left( \frac{\pi b}{\lambda} (\sin\theta^s \sin\phi^s + \sin\theta^i \sin\phi^i) \right)}{\frac{\pi b}{\lambda} (\sin\theta^s \sin\phi^s + \sin\theta^i \sin\phi^i)}.\nonumber
+	\end{align}
+	
+	ITS is a spherical surface with $ m $ components, and the base station antenna is a linear array (along the $ x \-axis ) with a spacing of     \lambda/2 $.
+	
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{screenshot002.png}
+	\caption{Schematic diagram of large-angle beam scanning enabled by spherical T-RIS at the base station}
+	\label{fig:screenshot002}
+\end{figure}
+	\subsection{Signal Source}
+	It refers to the signal vector of $ M $ transmitters. Its $ L_1 $-norm has an upper bound of $ P $, which represents the upper limit of the signal power of the transmitters.
+	
+	\subsection{Channel}
+	It is the channel matrix from the $ m $ antennas on the base station to the $ n $ elements on the spherical array.
+	
+	\begin{enumerate}
+		\item Signal source: $w \in C^{M \times 1}, \| w \|^2 \leq P_t$, where $w$ is the signal vector of $M$ transmit sources, and $\| w \|^2 \leq P$ is the L1 norm with an upper bound constraint of $P$, representing the upper limit of the signal power of the transmit sources.
+		\item Channel 1: The channel matrix $G$ from $m$ antennas at the base station to $n$ elements on the spherical array, where
+		\[
+		G \in C^{N \times M}, \quad G = [g_1, g_2, \dots, g_M], \quad g_m \in C^{N \times 1}, \quad m = 1,2,\dots,M
+		\]
+		\[
+		G_{nm} = \sqrt{\beta_0 r_{nm}^{-\alpha}} e^{-j\frac{2\pi r_{nm}}{\lambda}}
+		\]
+	\end{enumerate}
+	
+	\subsection{ITS Response}
+	The ITS is a sphere composed of $ m $ elements, and the base station antennas form a linear array (along the $ x $\- axis) with an element spacing of $ \lambda/2 $.
+	
+	If the coordinate of the $ n $-th element is $ \mathbf{r}_n = \left[ x_n, y_n, z_n \right] $, then for the wavelength $ \lambda $ and wave number $ k = 2\pi/\lambda $, the unit vector of the incident/emission direction is:
+	\begin{equation}
+		\mathbf{u}(\theta, \varphi) = \begin{bmatrix}
+			\sin\theta \cos\varphi \\ 
+			\sin\theta \sin\varphi \\ 
+			\cos\theta 
+		\end{bmatrix}
+	\end{equation}
+	
+	The phase delay of the $ n $-th element is:
+	\begin{equation}
+		\psi_n(\theta, \varphi) = k\cdot \mathbf{r}_n \cdot \mathbf{u}(\theta, \varphi)
+	\end{equation}
+	
+	The steering vector is:
+	\begin{equation}
+		\mathbf{a}(\theta, \varphi) = \begin{bmatrix} 
+			e^{j\psi_1(\theta, \varphi)} \\ 
+			e^{j\psi_2(\theta, \varphi)} \\ 
+			\vdots \\ 
+			e^{j\psi_N(\theta, \varphi)} 
+		\end{bmatrix}
+	\end{equation}
+	
+	array is located on a sphere with radius $ R $, the coordinate of the $ n $-th element is:
+	\begin{equation}
+		\mathbf{r}_n = R \begin{bmatrix} 
+			\sin\theta_n \cos\varphi_n \\ 
+			\sin\theta_n \sin\varphi_n \\ 
+			\cos\theta_n 
+		\end{bmatrix}
+	\end{equation}
+	
+	\subsection{Spherical Steering Vector }
+	
+	In conclusion, the Steering vector
+	
+	\begin{equation}  
+		\begin{array}{l} 
+		a_n(\theta, \varphi)=\exp (jk \mathbf{r}_n \cdot \mathbf{u}(\theta, \varphi))
+		\\=\exp \left(j k R\left[\sin \theta_n \cos \varphi_n \sin \theta \cos \varphi\right.\right.\\+\left.\left.\sin \theta_n \sin \varphi_n \sin \theta \sin \varphi+\cos \theta_n \cos \theta\right  ]\right)
+	    \end{array}
+	\end{equation}
+	
+	
+	The spherical coordinates $(\theta_n, \varphi_n)$ define the fixed physical position of the $n$-th element on the surface of the ITS array. In contrast, the angles $(\theta, \varphi)$ represent the variable spatial direction of the propagating plane wave for which the array's phase response is being calculated.
+	
+	Next,the beam response transmitted from the ITS-assisted
+	transmitter can be shown as:
+	\begin{equation}
+		\Pr = \boldsymbol{a}^\text{T}(\varphi_1, \theta_1)^{\!\!1 \times N} \times \boldsymbol{\Phi}^{N \times N} \times \boldsymbol{G}^{N \times M} \times \boldsymbol{w}^{M \times 1} 
+	\end{equation}
+	where The diagonal matrix  $\boldsymbol{\Phi}^{N \times N}$  
+	related to the phase shifts of the ITS ,
+	where $\boldsymbol{w} \in \mathbb{C}^{M \times 1}$ is the digital beamforming vector at the BS.
+	
+	\section{Electric Field Model of Spherical T-RIS Enabled UAV Communication}
+	
+	
+	\section{Transmissive Spherical T-RIS: Electric Field and Channel Model}
+	
+	For a transmissive spherical T-RIS, electromagnetic waves propagate through the T-RIS structure (instead of being reflected), so the electric field model must account for transmission-specific phase shifts and energy propagation. Assume the UAV is at spherical coordinates $(r_u, \theta_u, \phi_u)$, and the base station beam incidents on the T-RIS at $(\theta_t, \phi_t)$. The transmitted electric field components received by the UAV are:
+	
+	where $A = ab$, $C = -j(1 - \Gamma)/2$, and
+	
+	Proof: See Appendix A.
+	Remark 1: Consider the role of the term $e^{-j 2\pi r^s / \lambda}/r^s$.
+	
+	
+	$$
+	J_{L S}=\int_{\delta \in \delta_{\text {all }}} \int_{\phi \in \phi_{\text {all }}} F(\delta, \phi)|H(\delta, \phi)-D(\delta, \phi)|^2 \mathrm{~d} \delta \mathrm{~d} \phi
+	$$
+	
+	
+	where $ F(\delta, \phi) $ is a positive real weighting function to represent the importance of certain region in the cost function. In addition, $ H(\delta, \phi) $ and $ D(\delta, \phi) $ are the designed and desired beam response of the transmit beam, respectively. Specially, $ D(\delta, \phi) = 0 $ in the sidelobe region. We consider that the angles in $ \delta_{\text{all}} $ and $ \phi_{\text{all}} $ are discrete values. Let $ \delta_m $ and $ \phi_m $ denote the sets of angles in mainlobes. Also, $ \delta_s $ and $ \phi_s $ denote the sets in sidelobes. Substituting the designed beam response $ \mathcal{P}(\delta, \phi) $ into (6), the formulation of $ J_{LS} $ can be rewritten as:
+	
+	\[
+	\begin{split}
+		J_{LS} &= (1 - \beta) \sum_{\delta \in \delta_m, \phi \in \phi_m} \left| \mathcal{P}(\delta, \phi) - D(\delta, \phi) \right|^2 \\
+		& \quad + \frac{\beta}{N_s} \sum_{\delta \in \delta_s, \phi \in \phi_s} \left| \mathcal{P}(\delta, \phi) \right|^2,
+	\end{split}
+	\tag{7}
+	\]
+	
+	
+	where $ \beta \in (0,1) $ is a trade-off parameter to represent the importance of the mainlobe and sidelobe in $ J_{LS} $. Also, $ N_s $ is the number of the sidelobes.
+	
+	To minimize the cost function $ J_{LS} $, we can consider the following optimization problem:
+\begin{align}  % align环境支持\tag
+	\min_{\boldsymbol{\Theta}_T, \boldsymbol{w}} &\quad J_{LS}, \tag{8a} \\
+	\text{s.t.} &\quad C1: (1), \tag{8b} \\  
+	&\quad C2: \boldsymbol{w}^H \boldsymbol{w} \leq P_{\text{max}}. \tag{8c}
+\end{align}
+	
+	In the above optimization problem, $ C1 $ denotes the constraints of the phase shifts of ITS. The $ P_{\text{max}} $ in $ C2 $ denotes the transmit power budget at the BS. We aim to minimize the cost function by joint design of the digital beamforming vector $ \boldsymbol{w} $ and the phase shifts $ \boldsymbol{\Theta}_T $. However, problem (8) is intractable due to its non-convexity caused by the coupling of the two variables. Next, we propose an effective algorithm to solve the optimization problem.
+	
+	\section{PROBLEM SOLUTION}
+	
+	To decouple $ \boldsymbol{w} $ and $ \boldsymbol{\Theta}_T $ in problem (8), we adopt the AO method to optimize the variables in an alternating manner.
+	
+	\subsection{Optimization of $\boldsymbol{w} $}
+	
+	We first consider the optimization of $ \boldsymbol{w} $ with a given $ \boldsymbol{\Theta}_T $. Let $ b(\delta, \phi) = \boldsymbol{s}(\delta, \phi)^H \boldsymbol{\Theta}_T \mathbf{T} $ and introduce the Lagrangian multiplier $ \mu $ related to the constraint $ C2 $, the Lagrangian function $ \mathcal{L}(\boldsymbol{w}) $ can be described as (9) at the bottom of the next page, which is a convex function over $ \boldsymbol{w} $. Thus, the optimal value of $ \boldsymbol{w} $ can be obtained by setting $ \partial \mathcal{L}(\boldsymbol{w}) / \partial \boldsymbol{w} $ to zero as shown in (10) at the bottom of the next page. Especially, if the constraint $ C2 $ is not met with equality at $ \tilde{\boldsymbol{w}} $, the optimal value of $ \mu $ is $ \tilde{\mu} = 0 $. Thus, the optimal solution is $ \tilde{\boldsymbol{w}}(0) $. Otherwise,
+	
+	
+	There still have a problem that we can't handle with unit modulus constraint C3.There have three solution:successive convex approximation(SCA),element-by-element iterative strategy and ADMM algorithms.
+	The ADMM has a lower complexity compared to the SCA method and a faster convergence compared to the element-by-element iterative strategy.Thus,we choose the ADMM algorithm to deal with this problem. We first introduce a slack variable \v{} to turn the problem into the ADMM framework as follows:
+	
+	\begin{align}
+		\min_{\boldsymbol{r},\theta_T} \quad & \boldsymbol{r}\Phi\boldsymbol{r}^H - 2\mathcal{R}\{\boldsymbol{r}\Psi\} \label{16a} \\
+		\text{s.t.} \quad & C3. \label{16b} \\
+		& \boldsymbol{r} = \theta_T. \label{16c}
+	\end{align}
+    The ADMM algorithm is based on the augmented Lagrangian as follows:
+    
+    \begin{equation}
+    	\begin{array}{l@{}l} 
+    		\mathcal{L}(\boldsymbol{r}, \theta_T, \boldsymbol{p}) = \boldsymbol{r}\Phi\boldsymbol{r}^H - 2\mathcal{R}\{\boldsymbol{r}\Psi\} \\
+    		\quad - \mathcal{R}\left\{\boldsymbol{p}^H(\boldsymbol{r}- \theta_T)\right\} + \frac{\rho}{2}\|\boldsymbol{r} - \theta_T\|^2  
+    	\end{array}
+    \end{equation}
+	where  is the parameter and  is the Lagrange multiplier
+	
+
+	
+	Then,we can consider the iteration optimization between the variables in by the ADMM algorithm,which can be performed based on the following subproblems and the update for p as follows:
+	
+		\begin{align}
+		\\ \\
+		\theta_T^{j+1} &= \arg \min_{\theta_T, \text{s.t. } C2} \mathcal{L}(\pmb{r}^j, \theta_T, \pmb{p}^j), \tag{18a} \\
+		\pmb{r}^{j+1} &= \arg \min_{\pmb{r}} \mathcal{L}(\pmb{r}^j, \theta_T^{j+1}, \pmb{p}^j), \tag{18b} \\
+		\pmb{p}^{j+1} &= \pmb{p}^j - \rho(\pmb{r}^{j+1} - \theta_T^{j+1}), \tag{18c}
+	\end{align}
+	
+	
+	
+	
+	where j is the times of iteration and () are
+	\begin{align}
+		\boldsymbol{\theta}^0 &= \operatorname{diag}\left(e^{j2\pi(1/M)}, \ldots, e^{j2\pi(M/M)}\right), \\
+		\boldsymbol{r}^0 &= \mathbf{0}, \\
+		\boldsymbol{p}^0 &= \mathbf{0}. \tag{19}
+	\end{align}
+	
+	Substituing the obtained r and p  into and only consider the term dependent on ,the sub-problem over can be formulated as :
+	   \begin{equation}  % 带编号的公式环境，若无需编号可替换为\[...\]
+	   	\min_{\theta_T, \text{s.t. } C2} \|\theta_T - (\boldsymbol{r}^i - \rho^{-1} \boldsymbol{p}^i)\|^2
+	   \end{equation}
+	
+	
+	Considering the unit-modulus constraint C3 and according to ,the optimal value of $\theta_T$ to minimize sub-problem can be expressed as follows: 
+
+	\[
+	\left[ \boldsymbol{\theta}_T^{i+1} \right]_m = 
+	\begin{cases} 
+		\frac{\left[ \boldsymbol{r}^i - \rho^{-1} \boldsymbol{p}^i \right]_m}{\left| \left[ \boldsymbol{r}^i - \rho^{-1} \boldsymbol{p}^i \right]_m \right|}, & \text{if } \left[ \boldsymbol{r}^i - \rho^{-1} \boldsymbol{p}^i \right]_m \neq 0 \\
+		\left[ \boldsymbol{\theta}_T^i \right]_m, & \text{otherwise},
+	\end{cases}
+	\tag{21}
+	\]
+	
+	where $[\theta_T]_m$ denotes the $m$th element of $\theta_T$.
+	
+	Then, substituting $\theta_T^{i+1}$ and $p^i$ into (18b) and considering the first-order derivation condition, we can obtain the following solution:
+	
+	\begin{equation}
+		2\Phi r^{i+1} - 2\Phi - p^i - \rho(\theta_T^{i+1} - r^{i+1}) = 0,
+		\tag{22}
+	\end{equation}
+	
+	which can be rearranged as:
+	d
+	\begin{equation}
+		r^{i+1} = (\rho\mathbf{I} + 2\Phi)^{-1}(2\Phi + \rho\theta_T^i + p^i).
+		\tag{23}
+	\end{equation}
+	
+	where $\mathbf{I} \in \mathbb{C}^{M \times M}$ denotes the identity matrix
+	  	
+	
+	Lastly, we can obtain the value of $\boldsymbol{p}$ from (18c). Thus, by iteratively optimizing the values of $\boldsymbol{r}$, $\boldsymbol{\theta}_T$, and $\boldsymbol{p}$, we can optimize the variables of problem (16a). The convergence of the ADMM algorithm can be guaranteed as shown in [16] if the value of the penalty parameter $\rho$ satisfies:
+	\begin{equation}
+		\frac{\rho\mathbf{I}}{2} - \mathbf{\Phi} \geq 0.
+	\end{equation}
+	
+	
+\begin{strip}
+	% 公式(9)
+	\begin{equation}
+		\begin{array}{l@{}l}
+		\mathcal{L}(\boldsymbol{w}) = (1 - \beta) \sum_{\substack{\delta \in \delta_m, \phi \in \phi_m}} (b(\delta, \phi)\boldsymbol{w})(b(\delta, \phi)\boldsymbol{w})^H + \frac{\beta}{N_s} \sum_{\substack{\delta \in \delta_s, \phi \in \phi_s}} (b(\delta, \phi)\boldsymbol{w})(b(\delta, \phi)\boldsymbol{w})^H 
+		\\- 2(1 - \beta)\mathcal{R}\left\{ \sum_{\substack{\delta \in \delta_m, \phi \in \phi_m}} D(\delta, \phi)b(\delta, \phi)\boldsymbol{w} \right\} + (1 - \beta) \sum_{\substack{\delta \in \delta_m, \phi \in \phi_m}} D(\delta, \phi) + \mu(\boldsymbol{w}^H \boldsymbol{w} - P_{\text{max}})
+		\label{eq:9}
+	\end{array}
+	\end{equation}
+	
+	% 公式(10)
+	\begin{equation}
+		\tilde{\boldsymbol{w}}(\mu) = (1 - \beta) \left( \sum_{\substack{\delta \in \delta_m, \phi \in \phi_m}} (1 - \beta)(\boldsymbol{b}^H \boldsymbol{b}) + \frac{\beta}{N_s} \sum_{\substack{\delta \in \delta_s, \phi \in \phi_s}} (\boldsymbol{b}^H \boldsymbol{b}) + \mu\mathbf{I} \right)^{-1} \sum_{\substack{\delta \in \delta_m, \phi \in \phi_m}} D(\delta, \phi)\boldsymbol{b}^H
+		\label{eq:10}
+	\end{equation}
+\end{strip}
+	\section{REFERENCES}
+	
+\begin{thebibliography}{4} % 大括号内数字为引用序号的最大位数（此处4篇引用，填4）
+	\bibitem{Mi2024} % 引用标签（正文可通过\cite{Mi2024}调用，便于交叉引用）
+	T. Mi, J. Zhang, R. Xiong, Z. Wang, P. Zhang, and R. C. Qiu, ``Toward Analytical Electromagnetic Models for Reconfigurable Intelligent Surfaces,'' in \textit{IEEE Transactions on Wireless Communications}, vol. 23, no. 5, pp. 4170--4185, May 2024.
+	\bibitem{Du2023}
+	W. Du, et al., ``Hybrid Beamforming Design for ITS-Assisted Wireless Networks,'' in \textit{IEEE Wireless Communications Letters}, vol. 12, no. 3, pp. 451--455, Mar. 2023.
+	\bibitem{Huang2024}
+	A. Huang, X. Mu, L. Guo, and G. Zhu, ``Hybrid Active-Passive RIS Transmitter Enabled Energy-Efficient Multi-User Communications,'' in \textit{IEEE Transactions on Wireless Communications}, vol. 23, no. 9, pp. 10653--10666, Sep. 2024.
+	\bibitem{Li2025}
+	Z. Li, et al., ``Toward TMA-Based Transmissive RIS Transceiver Enabled Downlink Communication Networks: A Consensus-ADMM Approach,'' in \textit{IEEE Transactions on Communications}, vol. 73, no. 4, pp. 2832--2846, Apr. 2025.
+\end{thebibliography}
+\end{document}
+
+

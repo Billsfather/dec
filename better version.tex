@@ -1,0 +1,112 @@
+\documentclass[journal,comsoc]{IEEEtran}
+\usepackage[T1]{fontenc}
+\ifCLASSINFOpdf
+\else
+\fi
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\interdisplaylinepenalty=2500
+\usepackage[cmintegrals]{newtxmath}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{flushend}
+\usepackage{amsmath}    % 数学公式基础
+\usepackage{amssymb}    % 数学符号（如\mathbf{I}）
+\usepackage{amsbsy}      % 加粗向量（\boldsymbol）
+\usepackage{cuted}      % 双栏转单列的strip环境
+\usepackage{enumitem}
+\usepackage{epstopdf}
+\usepackage{balance}
+\usepackage{dblfloatfix}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+% 重新定义附录标题格式
+\renewcommand{\appendixname}{APPENDIX}
+\renewcommand{\thesection}{\Alph{section}}
+
+\setlength{\abovecaptionskip}{-0.1cm}
+\renewcommand{\thetheorem}{\textcolor{red}{\arabic{section}.\arabic{theorem}}} % 定理编号红色
+\usepackage{float}    % 提供[H]选项，强制固定图片位置
+\usepackage{graphicx} % 用于插入图片的宏包
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb} % 用于符号支持
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\title{TRTC}
+\author{HaoyuWang}
+
+\begin{document}
+\section{System Model}
+
+We consider a downlink communication system assisted by a spherical Transmissive Reconfigurable Intelligent Surface (T-RIS), as shown in Fig.~\ref{fig:screenshot002}. The base station (BS) is equipped with a uniform linear array (ULA) containing $M$ active antennas. The T-RIS is constructed as a spherical array consisting of $N$ passive transmissive elements. The BS serves a single-antenna user located in the far-field region.
+
+The beamforming design involves the joint optimization of the active digital beamforming at the BS and the passive phase shifts at the T-RIS. We assume that the direct link between the BS and the user is blocked by obstacles, and the communication is established solely via the T-RIS link.
+
+\subsection{Geometric Configuration}
+Let the center of the spherical T-RIS be the origin of the coordinate system $(0,0,0)$. The T-RIS elements are distributed on a sphere of radius $R_s$. The coordinate of the $n$-th element of the T-RIS is denoted by $\mathbf{p}_n = [x_n, y_n, z_n]^T$, which can be expressed in spherical coordinates as:
+\begin{equation}
+	\mathbf{p}_n = R_s [\sin\theta_n \cos\varphi_n, \sin\theta_n \sin\varphi_n, \cos\theta_n]^T,
+\end{equation}
+where $\theta_n$ and $\varphi_n$ are the polar and azimuthal angles of the $n$-th element, respectively.
+
+The BS antennas are arranged along the x-axis. The location of the user is denoted by $\mathbf{p}_u$, with a distance $d_{ru}$ from the T-RIS center and direction $(\theta_u, \varphi_u)$.
+
+\subsection{Signal Transmission Model}
+The signal received by the user can be expressed as:
+\begin{equation}
+	y = \mathbf{h}_{ru}^H \boldsymbol{\Phi} \mathbf{G} \mathbf{w} s + n_0,
+\end{equation}
+where:
+\begin{itemize}
+	\item $s$ is the transmitted symbol with unit power $\mathbb{E}[|s|^2]=1$.
+	\item $\mathbf{w} \in \mathbb{C}^{M \times 1}$ is the active beamforming vector at the BS, satisfying the power constraint $\|\mathbf{w}\|^2 \le P_{max}$.
+	\item $\mathbf{G} \in \mathbb{C}^{N \times M}$ denotes the channel matrix from the BS to the T-RIS.
+	\item $\boldsymbol{\Phi} = \mathrm{diag}(\phi_1, \dots, \phi_N) \in \mathbb{C}^{N \times N}$ is the phase shift matrix of the T-RIS, where $\phi_n = e^{j \theta_n}$ and $\theta_n \in [0, 2\pi)$.
+	\item $\mathbf{h}_{ru} \in \mathbb{C}^{N \times 1}$ denotes the channel vector from the T-RIS to the user.
+	\item $n_0 \sim \mathcal{CN}(0, \sigma^2)$ is the additive white Gaussian noise.
+\end{itemize}
+
+\section{Channel Modeling}
+
+\subsection{BS-to-RIS Channel ($\mathbf{G}$)}
+Since the BS is typically located close to the T-RIS to form a transmitter structure, the channel between the BS and the T-RIS is modeled as a Line-of-Sight (LoS) channel. The element $G_{n,m}$ representing the channel coefficient from the $m$-th BS antenna to the $n$-th T-RIS element is given by:
+\begin{equation}
+	G_{n,m} = \sqrt{\beta_0 d_{n,m}^{-2}} e^{-j \frac{2\pi}{\lambda} d_{n,m}},
+\end{equation}
+where $\beta_0$ is the reference path loss at 1 meter, $\lambda$ is the wavelength, and $d_{n,m} = \|\mathbf{p}_n - \mathbf{p}_{BS,m}\|$ is the Euclidean distance between the $n$-th T-RIS element and the $m$-th BS antenna.
+
+\subsection{RIS-to-User Channel ($\mathbf{h}_{ru}$)}
+This section describes the link from the spherical surface to the user, which was omitted in previous formulations. Assuming the user is located in the far-field of the spherical T-RIS, the channel vector $\mathbf{h}_{ru} \in \mathbb{C}^{N \times 1}$ accounts for the path loss and the spherical array response. The conjugate transpose of the channel, $\mathbf{h}_{ru}^H$, represents the propagation from the RIS to the user.
+
+The $n$-th element of $\mathbf{h}_{ru}$ is modeled as:
+\begin{equation}
+	[\mathbf{h}_{ru}]_n = \sqrt{L_{ru}} \cdot g_e(\theta_u, \varphi_u) \cdot e^{-j \frac{2\pi}{\lambda} \mathbf{p}_n^T \mathbf{u}(\theta_u, \varphi_u)},
+\end{equation}
+where:
+\begin{enumerate}
+	\item $L_{ru} = \beta_0 d_{ru}^{-\alpha}$ represents the large-scale path loss, with $\alpha$ being the path loss exponent and $d_{ru}$ the distance from the T-RIS center to the user.
+	\item $g_e(\theta_u, \varphi_u)$ is the element pattern gain (e.g., the embedded element factor). For isotropic elements, $g_e=1$. In your previous context, this relates to the `Sa` function if considering aperture efficiency.
+	\item $\mathbf{u}(\theta_u, \varphi_u) = [\sin\theta_u \cos\varphi_u, \sin\theta_u \sin\varphi_u, \cos\theta_u]^T$ is the unit direction vector pointing towards the user.
+	\item The term $e^{-j \frac{2\pi}{\lambda} \mathbf{p}_n^T \mathbf{u}}$ represents the phase delay caused by the geometry of the spherical array relative to the incident plane wave from the user direction.
+\end{enumerate}
+
+Therefore, the equivalent cascaded channel gain derived from the beamforming and phase shifts is:
+\begin{equation}
+	\text{Gain} = \left| \sum_{n=1}^{N} [\mathbf{h}_{ru}]_n^* \phi_n [\mathbf{G}\mathbf{w}]_n \right|^2.
+\end{equation}
+\end{document}
