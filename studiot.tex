@@ -1,0 +1,117 @@
+\documentclass[journal,comsoc]{IEEEtran}
+\usepackage[T1]{fontenc}
+\ifCLASSINFOpdf
+\else
+\fi
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\interdisplaylinepenalty=2500
+\usepackage[cmintegrals]{newtxmath}
+\usepackage{mathrsfs}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{flushend}
+\usepackage{amsmath}    % 数学公式基础
+\usepackage{amssymb}    % 数学符号（如\mathbf{I}）
+\usepackage{amsbsy}      % 加粗向量（\boldsymbol）
+\usepackage{cuted}      % 双栏转单列的strip环境
+\usepackage{enumitem}
+\usepackage{epstopdf}
+\usepackage{balance}
+\usepackage{dblfloatfix}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}{Lemma}
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+% 重新定义附录标题格式
+\renewcommand{\appendixname}{APPENDIX}
+\renewcommand{\thesection}{\Alph{section}}
+
+\setlength{\abovecaptionskip}{-0.1cm}
+\renewcommand{\thetheorem}{\textcolor{red}{\arabic{section}.\arabic{theorem}}} % 定理编号红色
+\usepackage{float}    % 提供[H]选项，强制固定图片位置
+\usepackage{graphicx} % 用于插入图片的宏包
+\usepackage[utf8]{inputenc}
+\usepackage{amssymb} % 用于符号支持
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[english]{babel}
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\title{TRTC}
+\author{HaoyuWang}
+
+\begin{document}
+\section{Problem Formulation}
+
+The primary objective of the beamforming design is to maximize the received signal-to-noise ratio (SNR) at the user. By jointly optimizing the active beamforming vector $\mathbf{w}$ at the BS and the passive phase-shift matrix $\boldsymbol{\Phi}$ at the T-RIS, we can coherently align the signal paths to achieve maximum signal power at the user's location.
+
+The received SNR at the user, denoted by $\gamma$, can be expressed as:
+\begin{equation}
+	\gamma = \frac{|\mathbf{h}_{ru}^H \boldsymbol{\Phi} \mathbf{G} \mathbf{w}|^2}{\sigma^2}.
+\end{equation}
+
+Our goal is to maximize this SNR subject to the constraints on the BS transmit power and the unit-modulus of the T-RIS phase shifts. The optimization problem can be formally stated as:
+\begin{align}
+	\max_{\mathbf{w}, \boldsymbol{\Phi}} \quad & |\mathbf{h}_{ru}^H \boldsymbol{\Phi} \mathbf{G} \mathbf{w}|^2 \label{eq:opt_problem} \\
+	\mathrm{s.t.} \quad & \|\mathbf{w}\|^2 \le P_{max}, \label{eq:power_constraint} \\
+	& \boldsymbol{\Phi} = \mathrm{diag}(e^{j\theta_1}, \dots, e^{j\theta_N}), \quad \theta_n \in [0, 2\pi). \label{eq:ris_constraint}
+\end{align}
+This problem is non-convex due to the coupling between the optimization variables $\mathbf{w}$ and $\boldsymbol{\Phi}$ in the objective function and the unit-modulus constraint on the elements of $\boldsymbol{\Phi}$.
+
+\section{Proposed Solution: Alternating Optimization}
+
+To tackle the non-convex optimization problem \eqref{eq:opt_problem}, we propose an iterative algorithm based on Alternating Optimization (AO). [2, 6] The core idea is to decompose the joint optimization problem into two more tractable sub-problems. We alternately optimize one variable while keeping the other fixed, and repeat this process until the solution converges.
+
+\subsection{Sub-problem 1: Optimizing Active Beamforming $\mathbf{w}$}
+For a fixed T-RIS phase-shift matrix $\boldsymbol{\Phi}$, the optimization problem for the active beamforming vector $\mathbf{w}$ becomes:
+\begin{align}
+	\max_{\mathbf{w}} \quad & |\mathbf{h}_{ru}^H \boldsymbol{\Phi} \mathbf{G} \mathbf{w}|^2 \\
+	\mathrm{s.t.} \quad & \|\mathbf{w}\|^2 \le P_{max}.
+\end{align}
+This is a convex problem. Let $\mathbf{h}_{eff}^H = \mathbf{h}_{ru}^H \boldsymbol{\Phi} \mathbf{G}$ be the effective cascaded channel. The problem is equivalent to maximizing $|\mathbf{h}_{eff}^H \mathbf{w}|^2$. The optimal solution is to apply maximum-ratio transmission (MRT) beamforming, which aligns $\mathbf{w}$ with the effective channel. The solution is given by:
+\begin{equation}
+	\mathbf{w}^* = \sqrt{P_{max}} \frac{(\mathbf{h}_{ru}^H \boldsymbol{\Phi} \mathbf{G})^H}{\|\mathbf{h}_{ru}^H \boldsymbol{\Phi} \mathbf{G}\|_F} = \sqrt{P_{max}} \frac{\mathbf{G}^H \boldsymbol{\Phi}^H \mathbf{h}_{ru}}{\|\mathbf{G}^H \boldsymbol{\Phi}^H \mathbf{h}_{ru}\|}.
+\end{equation}
+
+\subsection{Sub-problem 2: Optimizing Passive Beamforming $\boldsymbol{\Phi}$}
+For a fixed BS beamforming vector $\mathbf{w}$, the optimization problem for the T-RIS phase shifts $\boldsymbol{\Phi}$ is:
+\begin{align}
+	\max_{\boldsymbol{\Phi}} \quad & |\mathbf{h}_{ru}^H \boldsymbol{\Phi} \mathbf{G} \mathbf{w}|^2 \\
+	\mathrm{s.t.} \quad & \boldsymbol{\Phi} = \mathrm{diag}(e^{j\theta_1}, \dots, e^{j\theta_N}), \quad \theta_n \in [0, 2\pi).
+\end{align}
+Let $\mathbf{a} = \mathrm{diag}(\mathbf{h}_{ru}^H) \in \mathbb{C}^{N \times N}$ and $\mathbf{b} = \mathbf{Gw} \in \mathbb{C}^{N \times 1}$. Let $\boldsymbol{\phi} = [\phi_1, \dots, \phi_N]^T$ be the vector of phase shifts. The objective function can be rewritten as maximizing $|\mathbf{a}^H \boldsymbol{\phi} \mathbf{b}|$ which simplifies to $|\sum_{n=1}^{N} [\mathbf{h}_{ru}]_n^* \phi_n [\mathbf{Gw}]_n|$.
+
+To maximize the magnitude of this sum, we need to align the phases of all terms. This is achieved by setting the phase of each $\phi_n$ to cancel the phase of the corresponding term $[\mathbf{h}_{ru}]_n^* [\mathbf{Gw}]_n$. The optimal phase shift for the $n$-th element is:
+\begin{equation}
+	\phi_n^* = e^{-j \arg([\mathbf{h}_{ru}]_n^* [\mathbf{Gw}]_n)}.
+\end{equation}
+This can be written in vector form as:
+\begin{equation}
+	\boldsymbol{\phi}^* = e^{-j \arg(\mathrm{diag}(\mathbf{h}_{ru}^*) \mathbf{Gw})},
+\end{equation}
+where $\arg(\cdot)$ is the element-wise phase extraction operator.
+
+\subsection{Algorithm Summary}
+The overall algorithm iterates between solving these two sub-problems until the objective function value converges.
+
+\begin{enumerate}
+	\item Initialize $\boldsymbol{\Phi}^{(0)}$ with random phases. Set iteration index $k=0$.
+	\item \textbf{repeat}
+	\item \quad Fix $\boldsymbol{\Phi}^{(k)}$ and compute the optimal $\mathbf{w}^{(k+1)}$ using MRT.
+	\item \quad Fix $\mathbf{w}^{(k+1)}$ and compute the optimal $\boldsymbol{\Phi}^{(k+1)}$ by aligning the phases.
+	\item \quad Increment $k \leftarrow k+1$.
+	\item \textbf{until} a convergence criterion is met (e.g., the increase in the objective function is below a threshold).
+\end{enumerate}
+
+This AO-based approach is guaranteed to converge to a locally optimal solution because the objective function is non-decreasing in each step. [7]
+\end{document}
